@@ -65,7 +65,7 @@
     <article id="post-abc" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/23/abc/" class="article-date">
-  <time datetime="2019-03-23T10:50:37.000Z" itemprop="datePublished">2019-03-23</time>
+  <time datetime="2019-03-23T06:36:36.000Z" itemprop="datePublished">2019-03-23</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/23/abc/">abc</a>
+      <a class="article-title" href="/2019/03/23/abc/">正则</a>
     </h1>
   
 
@@ -84,58 +84,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/23/abc/" data-id="cjtldhgyi0000kor47umpzsxa" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/23/hello-world/" class="article-date">
-  <time datetime="2019-03-23T10:47:26.159Z" itemprop="datePublished">2019-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/23/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>正则常用的一些方法</p>
+<h2 id="1-test"><a href="#1-test" class="headerlink" title="1. test()"></a>1. test()</h2><pre><code>regexp.test(str)
+</code></pre><p>作用： 检测一个字符串是否匹配某个正则。满足返回true,否则返回false。此方法的返回结果会受到是否加全局标志<code>g</code>的影响</p>
+<p>未加全局g测试代码：</p>
+<pre><code>var regexp = /^1[3-9]\d{9}$/; // 手机号正则
+console.log( regexp.lastIndex ); // 0 
+console.log( regexp.test(&apos;13588888888&apos;) ); // true
+console.log( regexp.lastIndex ); // 0 
+console.log( regexp.test(&apos;18588888888&apos;) ); // true
+console.log( regexp.lastIndex ); // 0
+console.log( regexp.test(&apos;12588888888&apos;) ); // false 第2位不满足
+</code></pre><p><code>lastIndex</code>属性是正则下次往后匹配的起始位置<br>可见，未加全局g,则lastIndex属性值一直从0开始往后匹配。</p>
+<p>加全局g测试代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regexp = <span class="regexp">/^1[3-9]\d&#123;9&#125;$/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( regexp.lastIndex ); <span class="comment">// 0   默认从下标0向后匹配</span></span><br><span class="line"><span class="built_in">console</span>.log( regexp.test(<span class="string">'13588888888'</span>) ); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( regexp.lastIndex ); <span class="comment">// 11 后面往后匹配的下标位置</span></span><br><span class="line"><span class="built_in">console</span>.log( regexp.test(<span class="string">'13588888888'</span>) ); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( regexp.lastIndex); <span class="comment">// 0 上面匹配失败下标重置为0</span></span><br><span class="line"><span class="built_in">console</span>.log( regexp.test(<span class="string">'13588888888'</span>) ); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如此循环着此过程</span></span><br></pre></td></tr></table></figure>
+<p>可见，加全局g的时候，lastIndex属性的值会受到test方法的影响。导致每次往后匹配的下标值是不一样的，若多次调用test方法会重复上面的过程。</p>
+<p>若想每次都从下标0开始往后匹配，只需调用test前把lastIndex属性重置为0即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">regexp.lastIndex  = <span class="number">0</span> ; <span class="comment">// 重置为0</span></span><br><span class="line"><span class="built_in">console</span>.log( regexp.test(<span class="string">'13588888888'</span>) ); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>所以一般判断一个字符串是否满足一个正则，即对于结果是true或false的情况，此时正则建议不加全局g,这可让lastIndex属性每次都是从0开始向后匹配。</p>
+</blockquote>
+<h2 id="2-exec"><a href="#2-exec" class="headerlink" title="2. exec()"></a>2. exec()</h2><pre><code>regexp.exec(str)
+</code></pre><p>作用： 返回正则匹配的结果，以一个数组返回 。此数组第一个元素（下标0）是正则相匹配的字符串，后面的下标元素依次是括号中捕获组匹配的内容。未匹配到则返回<code>null</code></p>
+<p>此方法和test一样，其返回结果都会受到正则全局标识<code>g</code>的影响。</p>
+<p>未全局g测试：</p>
+<pre><code>var regexp = /(\d{3})\d{4}(\d{4})/; 
+regexp.exec(&apos;13588888888&apos;) ; // [&quot;13588888888&quot;, &quot;135&quot;, &quot;8888&quot;, index: 0, input: &quot;13588888888&quot;]
+regexp.lastIndex; // 0
+regexp.exec(&apos;13588888888&apos;) ; // [&quot;13588888888&quot;, &quot;135&quot;, &quot;8888&quot;, index: 0, input: &quot;13588888888&quot;]
+regexp.lastIndex; // 0
+regexp.exec(&apos;13588888888&apos;) ; // [&quot;13588888888&quot;, &quot;135&quot;, &quot;8888&quot;, index: 0, input: &quot;13588888888&quot;]
+</code></pre><p>可见，匹配的结果都是一样的，结果为：<code>[13588888888&#39;，&#39;135&#39;，&#39;8888&#39;]</code><br>下标<code>0</code>为1358888888是正则匹配的结果。<br>下标<code>1</code>为135是正则第<code>1</code>个捕获组匹配的结果。<br>下标<code>2</code>为8888是正则第<code>2</code>个捕获组匹配的结果。<br>…<br>多个捕获组的匹配结果以此类推</p>
+<p>加全局g测试：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regexp = <span class="regexp">/(\d&#123;3&#125;)\d&#123;4&#125;(\d&#123;4&#125;)/g</span>; </span><br><span class="line">regexp.lastIndex; <span class="comment">// 0</span></span><br><span class="line">regexp.exec(<span class="string">'13588888888'</span>); <span class="comment">// ["13588888888", "135", "8888",   index: 0, input: "13588888888"]</span></span><br><span class="line">regexp.lastIndex; <span class="comment">// 11</span></span><br><span class="line">regexp.exec(<span class="string">'13588888888'</span>); <span class="comment">// null</span></span><br><span class="line">regexp.lastIndex; <span class="comment">// 0</span></span><br><span class="line">regexp.exec(<span class="string">'13588888888'</span>); <span class="comment">// ["13588888888", "135", "8888", index: 0, input: "13588888888"]</span></span><br></pre></td></tr></table></figure></p>
+<p>结果和上面未加g代码测试结果一样，只是每次调用exec方法，其正则对象lastIndex属性值的下次起始匹配位置都会改变，这个变化和test方法是一样的。</p>
+<h3 id="while循环exec方法"><a href="#while循环exec方法" class="headerlink" title="while循环exec方法"></a>while循环exec方法</h3><p>当正则加了全局标识g时，若要使用exec方法获取正则匹配的所有结果，一次次调用exec显然不行的，因为匹配成功就会停止，再次通过lastIndex属性的下标值继续往后匹配，因此不知道要调用多少次exec方法才可获得匹配的所有结果，一般做法是使用while循环exec方法，直到未匹配为止。<br>如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'13423455678php18912345678'</span>;</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/(\d&#123;3&#125;)\d&#123;4&#125;(\d&#123;4&#125;)/g</span>;</span><br><span class="line"><span class="keyword">var</span> result = [];</span><br><span class="line"><span class="keyword">var</span> row;</span><br><span class="line"><span class="keyword">while</span>( row = reg.exec(str))&#123;</span><br><span class="line">    result.push(row);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( result );</span><br></pre></td></tr></table></figure></p>
+<p>结果：<br><img src="https://upload-images.jianshu.io/upload_images/11273713-d927b1fe443ee8ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/23/hello-world/" data-id="cjtldhgyq0001kor4ljtjwth6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/23/abc/" data-id="cjtldr5sq0000uor4cx98bd8x" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
     </footer>
   </div>
   
@@ -153,9 +144,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/php/" style="font-size: 10px;">php</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -174,11 +179,7 @@
       <ul>
         
           <li>
-            <a href="/2019/03/23/abc/">abc</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/23/hello-world/">Hello World</a>
+            <a href="/2019/03/23/abc/">正则</a>
           </li>
         
       </ul>
